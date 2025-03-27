@@ -1,0 +1,9 @@
+alembic
+asyncpg
+sqlalchemy
+fastapi
+pydantic
+pydantic_settings
+uvicorn
+loguru
+black
