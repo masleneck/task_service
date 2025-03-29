@@ -1,17 +1,21 @@
 from src.core.new_app import NewApp
 import uvicorn
-
 app = NewApp.create_app()
 
-
-if __name__ == "__main__":
+def run_server():
     uvicorn.run(
-        app,
+        "src.main:app",
         host="0.0.0.0",
         port=8000,
-        log_config=None  # Используем настройки loguru
+        reload=True,  # Включаем autoreload
+        reload_dirs=["src"],  # Следим за изменениями в src/
+        log_config=None  # Используем loguru для логирования
     )
 
+if __name__ == "__main__":
+    run_server()
+
+    
     # python -m src.main
 
     # Я хочу локально развернуть кафку и командами пихать json в топик (у меня windows)

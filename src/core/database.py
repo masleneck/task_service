@@ -16,13 +16,13 @@ class Base(DeclarativeBase):
 
 # Фабрика сессий с настройками
 async_engine = create_async_engine(
-    url=settings.DATABASE_URL_acyncpg,
+    url=settings.DATABASE_URL_asyncpg,
     pool_pre_ping=True,  # Проверка соединения перед использованием
     pool_size=20,        # Размер пула соединений
     max_overflow=10,     # Максимальное количество соединений поверх pool_size
     echo=False           # Логировать SQL 
 )
-logger.debug(f"Connecting to database: {settings.DATABASE_URL_acyncpg}")
+logger.debug(f"Connecting to database: {settings.DATABASE_URL_asyncpg}")
 
 
 async_session_maker = async_sessionmaker(
