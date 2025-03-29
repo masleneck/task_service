@@ -1,8 +1,8 @@
 from datetime import datetime
 from loguru import logger
 from sqlalchemy import select
-from src.database import async_session_maker, async_engine, Base
-from src.models import Task, TaskStatus, TaskType
+from src.core.database import async_session_maker, async_engine, Base
+from src.models.task import Task, TaskStatus, TaskType
 
 
 class AsyncCRUD:
@@ -26,7 +26,8 @@ class AsyncCRUD:
                 if_active=False,
                 created_at=datetime(2025, 3, 27, 10, 0, 0), 
                 updated_at=datetime(2025, 3, 27, 13, 0, 0),
-                ended_at=datetime(2025, 3, 27, 15, 0, 0)
+                ended_at=datetime(2025, 3, 27, 15, 0, 0),
+                author_id="uid123456789"
                 )
             task2  = Task(
                 name="Реализовать сущность задача",
@@ -34,6 +35,7 @@ class AsyncCRUD:
                 description="Сущность 'Задача' – это базовая единица системы, которая описывает действие, требующее выполнения.",
                 status=TaskStatus.in_progress,
                 type=TaskType.epic,
+                author_id="uid12sdfghyujk23"
             )
             session.add_all([task1, task2]) 
             await session.commit()
